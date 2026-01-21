@@ -6,12 +6,13 @@
 		"vscode": {
 			"settings": {
 				"workbench.colorTheme": "Default Dark+" //replace Panda syntax
-				
 			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-vscode.cpptools",
-				"avenableivytech.vscode-sqlite-av"
+				"avenableivytech.vscode-sqlite-av",
+				"hediet.vscode-drawio",
+				"mermaidchart.vscode-mermaid-chart"
 			]
 		}
 	}
