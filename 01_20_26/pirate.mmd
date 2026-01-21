@@ -1,0 +1,36 @@
+---
+config:
+    theme: mc
+---
+
+erDiagram
+    pirate ||--|{ pirate_rank : serves
+    ship ||--|{ pirate_rank : serves
+    rank ||--|{pirate_rank :serves
+    pirate{
+        int pirate_num pk
+        string last_name
+        string first_name
+        date dob
+    }
+    ship{
+        int ship_num pk
+        string ship_name
+        string ship_type
+        int no_cannons
+        int size
+        string location
+    }
+    rank{
+        int rank_num pk
+        string rank_name
+        real salary
+    }
+    pirate_rank{
+        int pirate_rank_num pk
+        int pirate_num fk
+        int rank_num fk
+        int ship_num fk
+        date end_date
+    }
+    
