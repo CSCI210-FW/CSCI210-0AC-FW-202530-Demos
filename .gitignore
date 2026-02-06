@@ -1,1 +1,3 @@
 *:Zone.Identifier
+test_env/*
+test.venv/*
