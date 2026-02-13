@@ -20,9 +20,37 @@ int main()
         std::cout << "Error opening database: " << sqlite3_errmsg(db) << std::endl;
     }
     viewAssignmentsByProject(db);
-    query = ;
+    query = "delete from employee where emp_lname = 'Brown' and emp_fname = 'Charlie'";
     rc = sqlite3_exec(db, query.c_str(), NULL, NULL, NULL);
+    if (rc != SQLITE_OK)
+    {
+        std::cout << "There was an error with deleting charlie brown: " << sqlite3_errmsg(db) << std::endl;
+        std::cout << query << std::endl;
+    }
+    std::string lname = "Brown";
+    std::string fname = "Charlie";
+    int job = 504;
+    int years = 0;
+    char formatDate[80];
+    time_t currentDate = time(NULL);
+    strftime(formatDate, 80, "%F", localtime(&currentDate));
+    std::string hiredate(formatDate);
+    query = "insert into employee(emp_lname, emp_fname, emp_hiredate, job_code, "
+            "emp_years)\n"
+            "values ('" +
+            lname + "','" + fname + "', '" + hiredate + "', " + std::to_string(job) + ", " + std::to_string(years) + ")";
 
+    rc = sqlite3_exec(db, query.c_str(), NULL, NULL, NULL);
+    if (rc != SQLITE_OK)
+    {
+        std::cout << "There was an error with adding charlie brown: " << sqlite3_errmsg(db) << std::endl;
+        std::cout << query << std::endl;
+    }
+    else
+    {
+        int emp_num = sqlite3_last_insert_rowid(db);
+        std::cout << fname << " " << lname << " inserted into the database as employee number " << emp_num << std::endl;
+    }
     selectEmployees(db);
     sqlite3_close(db);
     return 0;
